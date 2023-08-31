@@ -57,12 +57,6 @@ spec:
               name: {{ $dataBucketSecretName }}
               key: {{ $dataBucketSecretKey }}
         {{- end }}
-        - name: SWOOP_API_URL
-          valueFrom:
-            secretKeyRef:
-              name: {{ $apiUrlSecretName }}
-              key: {{ $apiUrlSecretKey }}
-        {{- end }}
 
         # should pin to a specific version or label here
         image: quay.io/element84/publish-stac-task:latest

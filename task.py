@@ -17,7 +17,6 @@ s3_client = s3(requester_pays=False)
 
 # Environment variables from the container
 DATA_BUCKET = os.getenv("SWOOP_DATA_BUCKET")
-API_URL = os.getenv("SWOOP_API_URL", None)
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_SESSION_TOKEN = os.getenv("AWS_SESSION_TOKEN")
@@ -144,17 +143,6 @@ class Publish(Task):
         try:
             logging.debug("Publishing items to S3")
 
-            if API_URL is not None:
-                # TO-DO: update this link if needed
-                link = {
-                    "title": payload["id"],
-                    "rel": "via-swoop",
-                    "href": f"{API_URL}/catid/{payload['id']}",
-                }
-                logging.debug(json.dumps(link))
-                # add swoop-source relation
-                for item in payload["features"]:
-                    item["links"].append(link)
             # publish to s3
             mod_payload = Publish.publish_items_to_s3(payload, DATA_BUCKET, public)
 
