@@ -156,7 +156,8 @@
                 ]
             },
             "publish": {
-                "public": false
+                "public": false,
+                "stac_validate": true
             }
         }
     }

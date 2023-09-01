@@ -1,2 +1,2 @@
 stactask==0.1.0
-stac-validator
+stac-validator==3.3.1
