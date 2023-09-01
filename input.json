@@ -139,10 +139,13 @@
             "stac_version": "1.0.0"
         }
     ],
-    "process": {
-        "workflow": "copy-assets",
+    "process": [{
+        "workflow": "mirror",
         "upload_options": {
             "path_template": "s3://<ADD S3 BUCKET NAME HERE>/data/${collection}/${id}/",
+            "collections": {
+                "naip": "*"
+            },
             "public_assets": [],
             "s3_urls": false
         },
@@ -160,5 +163,5 @@
                 "stac_validate": true
             }
         }
-    }
+    }]
 }
