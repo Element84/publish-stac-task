@@ -1,5 +1,7 @@
 import json
 import requests
+import random
+import string
 
 SWOOP_API_HOST = input("Enter SWOOP API Host (localhost:8000): ")
 STAC_ASSET_BUCKET_NAME = input("Enter STAC ASSETS BUCKET NAME: ")
@@ -178,6 +180,10 @@ PAYLOAD = {
 	"response": "document"
 }
 
+TEST_ID = "".join(random.choices(string.ascii_letters, k=10))
+print(f'TEST ID: {TEST_ID}')
+PAYLOAD["inputs"]["payload"]["id"] = TEST_ID
+PAYLOAD["inputs"]["payload"]["features"][0]["id"] = TEST_ID
 content=json.dumps(PAYLOAD)
 print('***** INPUTS SUMMARY *****')
 print(f'SWOOP API Host: {SWOOP_API_HOST}')
